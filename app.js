@@ -55,7 +55,7 @@ async function getFoursquare(business) {
 		Authorization: 'fsq3ATzZbmcGhdeFafr73wZcnJ+LlN6bK+4dh19a7ClS4u8='
 		}
 	}
-	let limit = 5
+	let limit = 20
 	let lat = myMap.coordinates[0]
 	let lon = myMap.coordinates[1]
 	let response = await fetch(`https://api.foursquare.com/v3/places/search?&query=${business}&limit=${limit}&ll=${lat}%2C${lon}`, options)
@@ -77,8 +77,8 @@ function processBusinesses(data) {
 	return businesses
 }
 
-
 // event handlers
+
 // window load
 window.onload = async () => {
 	const coords = await getCoords()
@@ -94,3 +94,7 @@ document.getElementById('submit').addEventListener('click', async (event) => {
 	myMap.businesses = processBusinesses(data)
 	myMap.addMarkers()
 })
+
+function deleteMarkers(){
+	window.location.reload();
+}
